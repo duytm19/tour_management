@@ -13,7 +13,7 @@ dotenv.config()
 // });
 
 // Option 3: Passing parameters separately (other dialects)
-const sequelize = new Sequelize(process.env.DATABASE_NAME, process.env.DATABASE_USERNAME, process.env.PASSWORD, {
+export const sequelize = new Sequelize(process.env.DATABASE_NAME, process.env.DATABASE_USERNAME, process.env.PASSWORD, {
   host: process.env.DATABASE_HOST,
   dialect: "mysql",
 });
@@ -26,3 +26,4 @@ export const database = async () => {
     console.error("Unable to connect to the database:", error);
   }
 };
+
