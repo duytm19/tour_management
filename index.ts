@@ -14,6 +14,7 @@ app.set("views","./views")
 app.set("view engine","pug")
 
 clientRoutes(app)
+
 app.listen(port,()=>{
     console.log(`App listening on port ${port}`)
 })
