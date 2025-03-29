@@ -1,3 +1,4 @@
+
 //swiper image
 var swiper = new Swiper(".mySwiper", {
     loop: true,
@@ -19,13 +20,39 @@ var swiper = new Swiper(".mySwiper", {
   });
 
 // End swiper
+// Alert
+const alertAddCartSuccess=()=>{
+    const elementAlert = document.querySelector("[alert-add-cart-success]")
+    if(elementAlert){
+        elementAlert.classList.remove("alert-hidden")
 
+        setTimeout(()=>{
+            elementAlert.classList.add("alert-hidden")
+        },3000)
+
+        const closeAlert = elementAlert.querySelector("[close-alert]")
+        closeAlert.addEventListener("click",()=>{
+            elementAlert.classList.add("alert-hidden")
+        })
+    }
+}
+// End Alert
 // Carts
 // Create cart in local storage if the system don't contain local storage
 const cart = localStorage.getItem("cart")
 if(!cart){
     localStorage.setItem("cart",JSON.stringify([]))
 }
+
+const showMiniCart=()=>{
+    const miniCart = document.querySelector("[mini-cart]")
+    if(miniCart){
+        const cart = JSON.parse(localStorage.getItem("cart"))
+        const totalQuantity = cart.reduce((sum,item)=>sum+item.quantity,0)
+        miniCart.innerHTML= totalQuantity
+    }
+}
+showMiniCart()
 // Add tour in to cart
 const formAddToCart = document.querySelector("[form-add-to-cart]")
 if(formAddToCart){
@@ -51,6 +78,9 @@ if(formAddToCart){
                 cart[indexExistTour].quantity = cart[indexExistTour].quantity +quantity
             }
             localStorage.setItem("cart",JSON.stringify(cart))
+
+            alertAddCartSuccess()
+            showMiniCart()
         }
     })
 

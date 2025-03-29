@@ -3,6 +3,10 @@ include ../../mixins/box-head.pug
 include ../../mixins/moment.pug
 
 block main 
+    div(
+        class="alert alert-success alert-hidden"
+        alert-add-cart-success
+    ) Add tour to cart <span close-alert>X</span>
     .tour-detail
         .container.my-3 
             .row 
